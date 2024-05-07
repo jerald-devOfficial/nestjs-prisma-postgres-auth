@@ -1,0 +1,3 @@
+- `nest new nest-prisma-postgres-auth` to create a new project
+- select `yarn` as the package manager
+- `cd nest-prisma-postgres-auth`
