@@ -1,3 +1,6 @@
 - `nest new nest-prisma-postgres-auth` to create a new project
 - select `yarn` as the package manager
 - `cd nest-prisma-postgres-auth`
+- `nest -g resource auth --no-spec`
+- ? What transport layer do you use? REST API
+- ? Would you like to generate CRUD entry points? No
