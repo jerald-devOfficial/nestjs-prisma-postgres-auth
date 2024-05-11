@@ -7,16 +7,16 @@ export class AuthController {
 
   @Post('signup')
   signUp() {
-    return 'signup route'
+    return this.authService.signUp()
   }
 
   @Post('signin')
   signIn() {
-    return 'signin route'
+    return this.authService.signIn()
   }
 
   @Get('signout')
   signOut() {
-    return 'signout route'
+    return this.authService.signOut()
   }
 }
