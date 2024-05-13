@@ -4,3 +4,6 @@
 - `nest g resource auth --no-spec`
 - ? What transport layer do you use? REST API
 - ? Would you like to generate CRUD entry points? No
+
+- `yarn add prisma --save-dev`
+- `npx prisma init`
