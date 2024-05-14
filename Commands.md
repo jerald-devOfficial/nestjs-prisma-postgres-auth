@@ -7,3 +7,5 @@
 
 - `yarn add prisma --save-dev`
 - `npx prisma init`
+- `yarn add @prisma/client --save`
+- `npx prisma migrate dev --name init`
