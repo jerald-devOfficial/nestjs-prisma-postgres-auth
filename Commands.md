@@ -9,3 +9,6 @@
 - `npx prisma init`
 - `yarn add @prisma/client --save`
 - `npx prisma migrate dev --name init`
+- `yarn add bcrypt`
+- `yarn add -D @types/bcrypt`
+- `npx prisma studio`
