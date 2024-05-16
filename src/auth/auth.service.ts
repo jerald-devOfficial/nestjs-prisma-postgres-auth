@@ -34,7 +34,30 @@ export class AuthService {
     }
   }
 
-  async signIn() {
+  async signIn(dto: AuthDto) {
+    const { email, password } = dto
+
+    const foundUser = await this.prisma.user.findUnique({
+      where: {
+        email
+      }
+    })
+
+    if (!foundUser) {
+      throw new BadRequestException('Wrong credentials')
+    }
+
+    const isPasswordCorrect = await this.validatePassword(
+      password,
+      foundUser.hashedPassword
+    )
+
+    if (!isPasswordCorrect) {
+      throw new BadRequestException('Wrong credentials')
+    }
+
+    // sign jwt and return to the user
+
     return {
       message: 'Sign in was successful!'
     }
@@ -48,8 +71,10 @@ export class AuthService {
 
   async hashPassword(password: string) {
     const saltOrRounds = 10
-    const hashedPassword = await bcrypt.hash(password, saltOrRounds)
+    return await bcrypt.hash(password, saltOrRounds)
+  }
 
-    return hashedPassword
+  async validatePassword(password: string, hashedPassword: string) {
+    return await bcrypt.compare(password, hashedPassword)
   }
 }
