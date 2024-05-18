@@ -13,3 +13,5 @@
 - `yarn add -D @types/bcrypt`
 - `npx prisma studio`
 - `yarn add @nestjs/jwt --save`
+- `yarn add cookie-parser --save`
+- `yarn add -D @types/cookie-parser`
