@@ -15,3 +15,4 @@
 - `yarn add @nestjs/jwt --save`
 - `yarn add cookie-parser --save`
 - `yarn add -D @types/cookie-parser`
+- `nest g controller auth --no-spec`
