@@ -12,3 +12,4 @@
 - `yarn add bcrypt`
 - `yarn add -D @types/bcrypt`
 - `npx prisma studio`
+- `yarn add @nestjs/jwt --save`
