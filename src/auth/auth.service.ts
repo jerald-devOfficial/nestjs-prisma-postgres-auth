@@ -80,10 +80,9 @@ export class AuthService {
     return res.send({ message: 'Sign in was successful!' })
   }
 
-  async signOut() {
-    return {
-      message: 'User has been logged out!'
-    }
+  async signOut(req: Request, res: Response) {
+    res.clearCookie('token')
+    return res.send({ message: 'Sign out was successful!' })
   }
 
   async hashPassword(password: string) {
