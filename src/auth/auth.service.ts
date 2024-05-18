@@ -1,9 +1,14 @@
-import { BadRequestException, Injectable } from '@nestjs/common'
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable
+} from '@nestjs/common'
 import { PrismaService } from 'prisma/prisma.service'
 import { AuthDto } from './dto/auth.dto'
 import * as bcrypt from 'bcrypt'
 import { jwtSecret } from 'src/utils/constants'
 import { JwtService } from '@nestjs/jwt'
+import { Request, Response } from 'express'
 
 @Injectable()
 export class AuthService {
@@ -39,7 +44,7 @@ export class AuthService {
     }
   }
 
-  async signIn(dto: AuthDto) {
+  async signIn(dto: AuthDto, req: Request, res: Response) {
     const { email, password } = dto
 
     const foundUser = await this.prisma.user.findUnique({
@@ -61,11 +66,18 @@ export class AuthService {
       throw new BadRequestException('Wrong credentials')
     }
 
-    // sign jwt and return to the user
+    const token = await this.signToken({
+      email: foundUser.email,
+      id: foundUser.id
+    })
 
-    return {
-      message: 'Sign in was successful!'
+    if (!token) {
+      throw new ForbiddenException('Wrong credentials')
     }
+
+    res.cookie('token', token)
+
+    return res.send({ message: 'Sign in was successful!' })
   }
 
   async signOut() {
@@ -86,7 +98,7 @@ export class AuthService {
   async signToken(args: { email: string; id: string }) {
     const payload = args
 
-    this.jwt.signAsync(payload, {
+    return this.jwt.signAsync(payload, {
       secret: jwtSecret
     })
   }
