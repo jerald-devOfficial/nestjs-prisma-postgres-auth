@@ -16,3 +16,5 @@
 - `yarn add cookie-parser --save`
 - `yarn add -D @types/cookie-parser`
 - `nest g controller auth --no-spec`
+- `yarn add @nestjs/passport passport passport-jwt --save`
+- `yarn add -D @types/passport-jwt`
