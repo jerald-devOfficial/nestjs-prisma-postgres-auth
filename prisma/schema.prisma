@@ -13,5 +13,5 @@ model User {
   updatedAt      DateTime @updatedAt
   email          String   @unique
   hashedPassword String
-  name           String?
+  name           String
 }
